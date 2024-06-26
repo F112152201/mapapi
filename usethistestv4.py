@@ -9,6 +9,7 @@ import requests
 import urllib.parse
 import time
 import os
+from opencage.geocoder import OpenCageGeocode
 
 # 設定 API 金鑰
 openai_api_key = os.getenv('OPENAI_API_KEY')
@@ -19,7 +20,6 @@ if not openai_api_key or not opencage_api_key:
 else:
     openai.api_key = openai_api_key
     geocoder = OpenCageGeocode(opencage_api_key)
-    
 
 # 連接到 SQLite 資料庫
 conn = sqlite3.connect('account.db')
@@ -191,8 +191,8 @@ def show_map():
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
-                    {"role": "system", "content": "你是一個地理位置提取助手"},
-                    {"role": "user", "content": f"從以下句子中提取地點：{text}"}
+                    {"role": "system", "content": "你是一個地理助手"},
+                    {"role": "user", "content": user_input}
                 ]
             )
             location = response['choices'][0]['message']['content'].strip()
