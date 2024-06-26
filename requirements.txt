@@ -5,4 +5,3 @@ streamlit-folium
 opencage
 wikipedia-api
 requests
-os
