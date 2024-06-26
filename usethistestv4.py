@@ -171,13 +171,7 @@ def show_map():
 
     if user_input:
         # 呼叫 OpenAI API 並顯示回應
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "你是一個地理助手"},
-                {"role": "user", "content": user_input}
-            ]
-        )
+       
 
         # 輸出生成的文本
         answer = response['choices'][0]['message']['content'].strip()
