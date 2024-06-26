@@ -10,9 +10,14 @@ import urllib.parse
 import time
 
 # 設定 API 金鑰
-openai_api_key = 'sk-proj-dcDYA9V6A61agN53RKIIT3BlbkFJYKvXWQMaIz7BfU47qcBD'
-opencage_api_key = 'd46439f8f701431da94b2d00eec79064'
-openai.api_key = openai_api_key
+openai_api_key = os.getenv('OPENAI_API_KEY')
+opencage_api_key = os.getenv('OPENCAGE_API_KEY')
+
+if not openai_api_key or not opencage_api_key:
+    st.error("請設定您的 OpenAI 和 OpenCage API 金鑰")
+else:
+    openai.api_key = openai_api_key
+    geocoder = OpenCageGeocode(opencage_api_key)
 
 # 連接到 SQLite 資料庫
 conn = sqlite3.connect('account.db')
