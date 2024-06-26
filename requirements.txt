@@ -1,8 +1,10 @@
 streamlit
+openai
 pandas
+sqlite3
 folium
 streamlit-folium
-opencage
 wikipedia
 requests
-openai
+opencage
+
