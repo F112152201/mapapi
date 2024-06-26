@@ -8,6 +8,7 @@ import wikipedia
 import requests
 import urllib.parse
 import time
+import os
 
 # 設定 API 金鑰
 openai_api_key = os.getenv('OPENAI_API_KEY')
