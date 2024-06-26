@@ -19,6 +19,7 @@ if not openai_api_key or not opencage_api_key:
 else:
     openai.api_key = openai_api_key
     geocoder = OpenCageGeocode(opencage_api_key)
+    
 
 # 連接到 SQLite 資料庫
 conn = sqlite3.connect('account.db')
@@ -171,7 +172,13 @@ def show_map():
 
     if user_input:
         # 呼叫 OpenAI API 並顯示回應
-       
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "你是一個地理助手"},
+                {"role": "user", "content": user_input}
+            ]
+        )
 
         # 輸出生成的文本
         answer = response['choices'][0]['message']['content'].strip()
@@ -181,11 +188,11 @@ def show_map():
         # 提取地名
         def extract_location(text):
             # 使用 OpenAI API 來提取地名
-             response = openai.ChatCompletion.create(
+            response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
-                    {"role": "system", "content": "你是一個地理助手"},
-                    {"role": "user", "content": user_input}
+                    {"role": "system", "content": "你是一個地理位置提取助手"},
+                    {"role": "user", "content": f"從以下句子中提取地點：{text}"}
                 ]
             )
             location = response['choices'][0]['message']['content'].strip()
