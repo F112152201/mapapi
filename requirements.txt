@@ -3,6 +3,6 @@ openai
 pandas
 folium
 streamlit-folium
-wikipedia-api
+wikipedia
 requests
 opencage
