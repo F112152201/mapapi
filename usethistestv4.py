@@ -181,12 +181,12 @@ def show_map():
         # 提取地名
         def extract_location(text):
             # 使用 OpenAI API 來提取地名
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "你是一個地理位置提取助手"},
-                    {"role": "user", "content": f"從以下句子中提取地點：{text}"}
-                ]
+             response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "你是一個地理助手"},
+                {"role": "user", "content": user_input}
+            ]
             )
             location = response['choices'][0]['message']['content'].strip()
             # 移除不需要的字串
