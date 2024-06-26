@@ -19,6 +19,7 @@ if not openai_api_key or not opencage_api_key:
 else:
     openai.api_key = openai_api_key
     geocoder = OpenCageGeocode(opencage_api_key)
+    
 
 # 連接到 SQLite 資料庫
 conn = sqlite3.connect('account.db')
